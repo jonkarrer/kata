@@ -75,10 +75,16 @@ fn format_duration(seconds: u64) -> String {
     let mut finalString = String::new();
     let mapLen = timeMap.len();
     for (i, item) in timeMap.iter().enumerate() {
+        if mapLen == 1 {
+            finalString.push_str(&item);
+        }
+
         if i + 1 == mapLen {
             finalString.push_str(format!("and {}", item).as_str());
+        } else if i == mapLen {
+            finalString.push_str(format!("{} ", &item).as_str());
         } else {
-            finalString.push_str(&item);
+            finalString.push_str(format!("{}, ", &item).as_str());
         }
     }
 
